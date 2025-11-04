@@ -25,6 +25,21 @@ const DealCard: React.FC<DealCardProps> = ({ deal }) => {
     e.currentTarget.style.opacity = '1';
     e.currentTarget.style.transform = 'rotate(0deg)';
   };
+
+  const getStatusClasses = (status: string): string => {
+    switch (status) {
+      case 'WIN':
+        return 'bg-green-100 text-green-800';
+      case 'IN_PROGRESS':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'OPEN':
+        return 'bg-blue-100 text-blue-800';
+      case 'LOOSE':
+        return 'bg-red-100 text-red-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
+    }
+  };
   
   return (
     <div 
@@ -34,8 +49,10 @@ const DealCard: React.FC<DealCardProps> = ({ deal }) => {
       onDragEnd={handleDragEnd}
     >
       <div className="mb-3">
-        <h3 className="font-semibold text-gray-800">{deal.title}</h3>
-        <p className="text-xs text-gray-500 uppercase tracking-wide">{deal.status}</p>
+        <h3 className="font-semibold text-gray-800 h-10 leading-tight line-clamp-2">{deal.title}</h3>
+        <span className={`inline-block mt-1 text-xs font-medium px-2 py-0.5 rounded-full uppercase tracking-wide ${getStatusClasses(deal.status)}`}>
+          {deal.status.replace('_', ' ')}
+        </span>
       </div>
       <div className="space-y-1.5 text-sm mb-4">
         <div className="flex justify-between">

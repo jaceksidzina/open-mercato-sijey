@@ -12,6 +12,16 @@ const PipelineColumn: React.FC<PipelineColumnProps> = ({ stage, onDrop }) => {
   const dealCount = stage.deals.length;
   const [isDraggingOver, setIsDraggingOver] = useState(false);
 
+  const totalValue = stage.deals.reduce((sum, deal) => sum + deal.value, 0);
+
+  const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'decimal',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(value).replace(/,/g, ' ');
+  };
+
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
   };
@@ -59,6 +69,12 @@ const PipelineColumn: React.FC<PipelineColumnProps> = ({ stage, onDrop }) => {
             <p className="text-sm text-gray-500">No deals in this stage yet.</p>
           </div>
         )}
+      </div>
+      <div className="mt-3 pt-3 border-t border-gray-200">
+        <div className="flex justify-between text-sm px-1">
+          <span className="text-gray-600 font-medium">Total Value</span>
+          <span className="text-gray-800 font-bold">{formatCurrency(totalValue)} USD</span>
+        </div>
       </div>
     </div>
   );

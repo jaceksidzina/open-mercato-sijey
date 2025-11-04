@@ -1,4 +1,3 @@
-
 import type React from 'react';
 import type { IconName } from './components/Icon';
 
@@ -13,6 +12,7 @@ export interface Deal {
   assignedTo: string[];
   company: string;
   stageId: string;
+  creationDate: string;
 }
 
 export interface PipelineStage {
@@ -22,3 +22,5 @@ export interface PipelineStage {
   color: string;
   deals: Deal[];
 }
+
+export type SalesPipelines = Record<string, PipelineStage[]>;
