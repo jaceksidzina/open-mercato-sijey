@@ -1,0 +1,5 @@
+{
+  "name": "Sales Pipeline ERP",
+  "description": "A comprehensive ERP system to track deals by pipeline stage. Users can drag and drop deals between lanes to update their progress, providing a clear and interactive view of the sales funnel.",
+  "requestFramePermissions": []
+}
